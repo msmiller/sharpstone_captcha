@@ -10,12 +10,12 @@ The equation being generated is build into a param which gets passed back to the
 
 Inserting this into a view is pretty easy. There's one call to get the params to put in the form. Then just copy and paste.
 
-_Note that the value passed in to get the data is an encryption key. The default to use is the one standard to Rails, but I left this open so that you can use something else if you prefer._
+_Note that you can pass an optional crypt key if you don't want to use the default._
 
 ```
 # In your view:
 
-<% ssc_data = SharpstoneCaptcha.data_for_form(Rails.application.secrets.secret_key_base) %>
+<% ssc_data = SharpstoneCaptcha.data_for_form %>
 <%= hidden_field_tag :date_captcha_id, ssc_data[:date_captcha_id] %>
 <%= text_field_tag :date_captcha_answer, "", :placeholder => "ssc_data[:date_captcha_string] %>
 ```
@@ -23,7 +23,7 @@ _Note that the value passed in to get the data is an encryption key. The default
 ```
 # In your controller:
 
-if !SharpstoneCaptcha.verify_data_captcha(params, Rails.application.secrets.secret_key_base)
+if !SharpstoneCaptcha.verify_data_captcha(params)
     flash[:error] = "Sentient Being Test Failed!"
 else
     # Do something useful ...
