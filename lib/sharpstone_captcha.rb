@@ -2,7 +2,7 @@
 # @Author: msmiller
 # @Date:   2017-06-22 11:24:23
 # @Last Modified by:   Mark S. Miller
-# @Last Modified time: 2017-06-22 16:16:50
+# @Last Modified time: 2017-06-22 16:22:18
 #
 # Copyright (c) 2017 Silicon Chisel / Mark S. Miller
 
@@ -19,11 +19,11 @@ module SharpstoneCaptcha
 
   def self.verify_captcha(params, key=nil)
     key ||= Rails.application.secrets.secret_key_base
-    if params[:date_captcha_answer] && params[:date_captcha_id]
-      # m,d = self.crypt_out(params[:date_captcha_id], key).split("-")
-      # if (m.to_i + d.to_i) == params[:date_captcha_answer].to_i
-      expr = self.crypt_out(params[:date_captcha_id], key)
-      if expr && (eval(expr) == params[:date_captcha_answer].to_i)
+    if params[:ssc_captcha_answer] && params[:ssc_captcha_id]
+      # m,d = self.crypt_out(params[:ssc_captcha_id], key).split("-")
+      # if (m.to_i + d.to_i) == params[:ssc_captcha_answer].to_i
+      expr = self.crypt_out(params[:ssc_captcha_id], key)
+      if expr && (eval(expr) == params[:ssc_captcha_answer].to_i)
         return true
       end
     end
@@ -36,8 +36,8 @@ module SharpstoneCaptcha
     m = Time.now.month
 
     { 
-      :date_captcha_id => self.crypt_in("#{m} + #{d}", key),
-      :date_captcha_string => "Today is the #{Time.now.day.ordinalize} of #{SharpstoneCaptcha::MONTHNAMES[m]}"
+      :ssc_captcha_id => self.crypt_in("#{m} + #{d}", key),
+      :ssc_captcha_string => "Today is the #{Time.now.day.ordinalize} of #{SharpstoneCaptcha::MONTHNAMES[m]}"
     }
   end
 
@@ -67,7 +67,7 @@ require 'sharpstone_captcha'
 k = "qoeuryfhowe8gnwr78t0948cgcnmerwhgxhr4gcmrshgr8hg85hg89hr8hgrt"
 scp = SharpstoneCaptcha.data_for_form(k)
 p scp.inspect
-scp[:date_captcha_answer] = "28"
+scp[:ssc_captcha_answer] = "28"
 SharpstoneCaptcha.verify_captcha(scp, k)
 
 =end

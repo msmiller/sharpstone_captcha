@@ -2,7 +2,7 @@
 # @Author: Mark S. Miller
 # @Date:   2017-06-22 15:56:26
 # @Last Modified by:   Mark S. Miller
-# @Last Modified time: 2017-06-22 16:20:22
+# @Last Modified time: 2017-06-22 16:22:50
 #
 # Copyright (c) 2017 Silicon Chisel / Mark S. Miller
 
@@ -21,7 +21,7 @@ class CaptchaTest < Minitest::Test
     #p "Testing a valid answer"
     set_up
     scp = SharpstoneCaptcha.data_for_form(@k)
-    scp[:date_captcha_answer] = @d + @m
+    scp[:ssc_captcha_answer] = @d + @m
     assert(SharpstoneCaptcha.verify_captcha(scp, @k), "Good entry test passed")
   end
 
@@ -29,7 +29,7 @@ class CaptchaTest < Minitest::Test
     #p "Testing an INvalid answer (should return false)"
     set_up
     scp = SharpstoneCaptcha.data_for_form(@k)
-    scp[:date_captcha_answer] = @d + @m + 1
+    scp[:ssc_captcha_answer] = @d + @m + 1
     assert(!SharpstoneCaptcha.verify_captcha(scp, @k), "Bad entry test passed")
   end
 
@@ -37,7 +37,7 @@ class CaptchaTest < Minitest::Test
     #p "Testing an NULL answer (should return false)"
     set_up
     scp = SharpstoneCaptcha.data_for_form(@k)
-    scp[:date_captcha_answer] = nil
+    scp[:ssc_captcha_answer] = nil
     assert(!SharpstoneCaptcha.verify_captcha(scp, @k), "Bad entry test passed")
   end
 
@@ -45,14 +45,14 @@ class CaptchaTest < Minitest::Test
     #p "Testing an NULL answer (should return false)"
     set_up
     scp = SharpstoneCaptcha.data_for_form(@k)
-    scp[:date_captcha_answer] = ""
+    scp[:ssc_captcha_answer] = ""
     assert(!SharpstoneCaptcha.verify_captcha(scp, @k), "Bad entry test passed")
   end
 
   def test_string_generation
     set_up
     scp = SharpstoneCaptcha.data_for_form(@k)
-    assert_equal "Today is the #{@d.ordinalize} of #{SharpstoneCaptcha::MONTHNAMES[@m]}", scp[:date_captcha_string]
+    assert_equal "Today is the #{@d.ordinalize} of #{SharpstoneCaptcha::MONTHNAMES[@m]}", scp[:ssc_captcha_string]
   end
 
   #def test_english_hello

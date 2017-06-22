@@ -16,8 +16,8 @@ _Note that you can pass an optional crypt key if you don't want to use the defau
 # In your view:
 
 <% ssc_data = SharpstoneCaptcha.data_for_form %>
-<%= hidden_field_tag :date_captcha_id, ssc_data[:date_captcha_id] %>
-<%= text_field_tag :date_captcha_answer, "", :placeholder => ssc_data[:date_captcha_string] %>
+<%= hidden_field_tag :ssc_captcha_id, ssc_data[:ssc_captcha_id] %>
+<%= text_field_tag :ssc_captcha_answer, "", :placeholder => ssc_data[:ssc_captcha_string] %>
 ```
 
 I usually just put those 3 lines in a partial with whatever CSS classes I'm using.
