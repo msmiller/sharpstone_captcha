@@ -1,8 +1,8 @@
 #!/usr/bin/ruby
 # @Author: msmiller
 # @Date:   2017-06-22 11:24:23
-# @Last Modified by:   msmiller
-# @Last Modified time: 2017-06-22 12:33:59
+# @Last Modified by:   Mark S. Miller
+# @Last Modified time: 2017-06-22 12:45:51
 #
 # Copyright (c) 2017 Silicon Chisel / Mark S. Miller
 
@@ -31,7 +31,7 @@ module SharpstoneCaptcha
 
     { 
       :date_captcha_id => self.crypt_in("#{m}-#{d}", key),
-      :data_captcha_string => "Today is the #{Time.now.day.ordinalize} of #{SharpstoneCaptcha::MONTHNAMES[m]}"
+      :date_captcha_string => "Today is the #{Time.now.day.ordinalize} of #{SharpstoneCaptcha::MONTHNAMES[m]}"
     }
   end
 
