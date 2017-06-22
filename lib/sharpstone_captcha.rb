@@ -2,7 +2,7 @@
 # @Author: msmiller
 # @Date:   2017-06-22 11:24:23
 # @Last Modified by:   Mark S. Miller
-# @Last Modified time: 2017-06-22 12:45:51
+# @Last Modified time: 2017-06-22 14:27:30
 #
 # Copyright (c) 2017 Silicon Chisel / Mark S. Miller
 
@@ -15,7 +15,10 @@ module SharpstoneCaptcha
 
   MONTHNAMES = [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
-  def self.verify_data_captcha(params, key)
+  # The key is optional if you (a) don't want to use the default or (b) are running tests
+
+  def self.verify_data_captcha(params, key=nil)
+    key ||= Rails.application.secrets.secret_key_base
     if params[:date_captcha_answer] && params[:date_captcha_id]
       m,d = self.crypt_out(params[:date_captcha_id], key).split("-")
       if (m.to_i + d.to_i) == params[:date_captcha_answer].to_i
@@ -25,7 +28,8 @@ module SharpstoneCaptcha
     return false
   end
 
-  def self.data_for_form(key)
+  def self.data_for_form(key=nil)
+    key ||= Rails.application.secrets.secret_key_base
     d = Time.now.day
     m = Time.now.month
 
