@@ -37,3 +37,10 @@ Maybe in a later version I'll put in a helper for the Views. But for now I wante
 ## Roadmap
 
 The whole point of this thing is to be simple. Quickly get a reliable CAPTCHA onto a page in a way that won't require a lot of coding to accomodate it. That said, I can see adding other "formulas" ... like the classic "add/multiply these numbers" where the nunmbers are written out as text. Pretty much any expression that can be eval()'d could be used since the "answer" is encrypted in the form body.
+
+## TODO:
+
+- [ ] Tests
+- [ ] I18N Support 
+- [ ] Math expressions as an optional verification input
+- [ ] "Which box is red/green/blue" as an optional verification input
