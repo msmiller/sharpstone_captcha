@@ -17,8 +17,10 @@ _Note that you can pass an optional crypt key if you don't want to use the defau
 
 <% ssc_data = SharpstoneCaptcha.data_for_form %>
 <%= hidden_field_tag :date_captcha_id, ssc_data[:date_captcha_id] %>
-<%= text_field_tag :date_captcha_answer, "", :placeholder => "ssc_data[:date_captcha_string] %>
+<%= text_field_tag :date_captcha_answer, "", :placeholder => ssc_data[:date_captcha_string] %>
 ```
+
+I usually just put those 3 lines in a partial with whatever CSS classes I'm using.
 
 ```
 # In your controller:
@@ -27,6 +29,11 @@ if !SharpstoneCaptcha.verify_data_captcha(params)
     flash[:error] = "Sentient Being Test Failed!"
 else
     # Do something useful ...
-    end
-``
+end
+```
 
+Maybe in a later version I'll put in a helper for the Views. But for now I wanted it as basic as possible so that anyone using this can fold in their CSS without having to work around the Gem.
+
+## Roadmap
+
+The whole point of this thing is to be simple. Quickly get a reliable CAPTCHA onto a page in a way that won't require a lot of coding to accomodate it. That said, I can see adding other "formulas" ... like the classic "add/multiply these numbers" where the nunmbers are written out as text. Pretty much any expression that can be eval()'d could be used since the "answer" is encrypted in the form body.
