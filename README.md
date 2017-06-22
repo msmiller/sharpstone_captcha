@@ -40,7 +40,7 @@ The whole point of this thing is to be simple. Quickly get a reliable CAPTCHA on
 
 ## TODO:
 
-- [ ] Tests
+- [x] Tests
 - [ ] I18N Support 
 - [ ] Math expressions as an optional verification input
 - [ ] "Which box is red/green/blue" as an optional verification input
