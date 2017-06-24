@@ -1,4 +1,4 @@
-# sharpstones_captcha
+# sharpstone_captcha
 
 ![screenshot](screenshot.png)
 
