@@ -2,7 +2,7 @@
 
 ![screenshot](screenshot.png)
 
-This is a very simple ("programming with sharp stones") plugin to do CAPTCHA verification without a ton of JavaScripts or complexity. If you need something quick - especially for a prototype site - and don't want to get bogged down with something complex, this should help. That said, it's probably solid enough for most consumer grade deployments.
+This is a very simple ("programming with sharp stones") plugin to do CAPTCHA verification without a ton of JavaScripts or complexity. This also means you won't need to include some other provider's JavaScript (which you have no control over) or API (which can go down sometimes). If you need something quick - especially for a prototype site - and don't want to get bogged down with something complex, this should help. That said, it's probably solid enough for most consumer grade deployments.
 
 Basically it presents the user with a question of adding the number of the month and the day in a field, and if the total is correct, then the test passes and you can process the rest of the form. The date is presented as "Today is the 12th of February" so someone would need to parse that back to integers if they wanted to try to bypass this. Which probably isn't worth anyone's time.
 
