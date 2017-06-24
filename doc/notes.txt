@@ -1,0 +1,11 @@
+These are mianly notes for myself since this was the first time I wrote a gem.
+
+guides.rubygems.org - Make Your Own Gem
+http://guides.rubygems.org/make-your-own-gem/
+
+The Basics of Creating Rails Plugins
+http://guides.rubyonrails.org/plugins.html
+
+MiniTest links:
+https://semaphoreci.com/community/tutorials/how-to-test-rails-models-with-minitest
+http://blog.teamtreehouse.com/short-introduction-minitest
